@@ -1,4 +1,4 @@
-# CPCD: Conversational Playlist Curation Dataset
+# Beyond Single Items: Exploring User Preferences in Item Sets with the Conversational Playlist Curation Dataset
 
 ## Copyright Notice
 
@@ -25,6 +25,8 @@ music recommendation to build the Conversational Playlist Curation Dataset
 (CPCD), where we show that it leads raters to express preferences that would
 not be otherwise expressed. Finally, we propose a wide range of conversational
 retrieval models as baselines for this task and evaluate them on the dataset.
+
+Read the paper on [arXiv](https://arxiv.org/abs/2303.06791).
 
 ## [Data Card](https://github.com/google-research-datasets/cpcd/blob/main/cpcd_data_card.pdf)
 
