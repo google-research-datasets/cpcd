@@ -49,7 +49,7 @@ Each turn consists of:
 * `user_query` (string): user query for this turn.
 * `system_response` (string): wizard response for this turn.
 * `search_queries` (list[string]): list of queries entered by the wizard this turn.
-* `search_results` (list[string]): list of track ids retrieved for each query in “search_queries”.
+* `search_results` (list[list[string]]): list of track ids retrieved for each query in “search_queries”.
 * `liked_results` (list[string]): list of track ids shown to users and liked by them.
 * `disliked_results` (list[string]): list of track ids shown to users and disliked by them.
 
@@ -58,6 +58,11 @@ Each track consists of:
 * `track_titles` (string): title of the track.
 * `track_artists` (list[string]): names of the artist on this track.
 * `track_release_titles` (string): title of the release or album.
+* `track_cluster_ids` (string): identifier for the cluster this track belongs
+  to. Tracks with approximately the same title and artists were clustered
+  together. The evaluation script respects these clusters when computing
+  metrics.
+* `track_canonical_ids` (string): the canonical track id for the cluster this track belongs to.
 
 Here is an abbreviated example:
 ```
@@ -76,18 +81,21 @@ Here is an abbreviated example:
       "user_query": "Any genre works as long as it is upbeat and something people can jump around and sing to!",
       "system_response": "Here is a selection of songs that match your preferences. Any other artist or genre?",
       "search_queries": [
-        "Party Rock Anthem",
-        "Don't Stop Believin"
+        "I Gotta Feeling",
+        "Uptown Funk",
+        "Hey Ya"
       ],
       "search_results": [
         [
-          "3JDHlCcn-UY",
-          "9acyYo1JdRg"
+          "OIPmhkzN2ug"
         ],
         [
-          "0cBShyKk-w0",
-          "14d5a5pxiV8"
+          "tYvFa2ARD24"
         ],
+        [
+          "Jx_O6PHdWww",
+          "NDXCJYxkyio"
+        ]
       ],
       "liked_results": [
         "Jx_O6PHdWww",
@@ -99,28 +107,51 @@ Here is an abbreviated example:
     }
   ],
   "tracks": {
-    "4z-bOdAdias": {
+    "NDXCJYxkyio": {
+      "track_ids": "NDXCJYxkyio",
+      "track_titles": "Hey Ya",
+      "track_release_titles": "Circus",
       "track_artists": [
-        "Beyoncé"
+        "Sean Paul"
       ],
-      "track_release_titles": "I AM...SASHA FIERCE",
-      "track_titles": "Single Ladies (Put a Ring on It)",
-      "track_ids": "4z-bOdAdias"
+      "track_canonical_ids": "NDXCJYxkyio",
+      "track_cluster_ids": "f971a7673a776078fed9b62f5669f848"
     },
-    "7YQESUr8Cxc": {
+    "OIPmhkzN2ug": {
+      "track_ids": "OIPmhkzN2ug",
+      "track_titles": "I Gotta Feeling",
+      "track_release_titles": "THE E.N.D. (THE ENERGY NEVER DIES)",
       "track_artists": [
-        "Gwen Stefani"
+        "The Black Eyed Peas"
       ],
-      "track_release_titles": "Love Angel Music Baby (Deluxe Version)",
-      "track_titles": "Hollaback Girl",
-      "track_ids": "7YQESUr8Cxc"
+      "track_canonical_ids": "YU7IywQ_adI",
+      "track_cluster_ids": "3ad671cb3f4304d2c2a2927f2748de12"
+    },
+    "tYvFa2ARD24": {
+      "track_ids": "tYvFa2ARD24",
+      "track_titles": "Uptown Funk",
+      "track_release_titles": "Uptown Special",
+      "track_artists": [
+        "Mark Ronson",
+        "Bruno Mars"
+      ],
+      "track_canonical_ids": "_vAM53xoLvo",
+      "track_cluster_ids": "c5877449f4d33ac521d25361d952bf8b"
+    },
+    "Jx_O6PHdWww": {
+      "track_ids": "Jx_O6PHdWww",
+      "track_titles": "Hey Ya! (Radio Mix)",
+      "track_release_titles": "Speakerboxxx/The Love Below",
+      "track_artists": [
+        "Outkast"
+      ],
+      "track_canonical_ids": "jyyt0T-4dc4",
+      "track_cluster_ids": "bdc91aeae488a51e31cabf6285726fc9"
     }
   },
   "goal_playlist": [
-    "4z-bOdAdias",
-    "7YQESUr8Cxc",
-    "BciS5krYL80",
-    "Jx_O6PHdWww"
+    "Jx_O6PHdWww",
+    "OIPmhkzN2ug"
   ]
 }
 ```
