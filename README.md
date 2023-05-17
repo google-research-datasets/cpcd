@@ -155,3 +155,25 @@ Here is an abbreviated example:
   ]
 }
 ```
+
+## Running the evaluation script
+
+This repository also includes a standardized evaluation script that discounts
+near-duplicate tracks in the evaluation metrics.
+
+To use this script, format the model output in JSONL as follows (see
+`model_outputs/` for examples):
+```
+{
+  "docid": "<dialog_id>:<turn_index>",
+  "neighbor": [
+     { "docid": "<track_id>" }
+     ...
+   ]
+}
+```
+
+You can then run the evaluation code as follows:
+```
+python3 eval.py --model_output <model_output.jsonl> --output output.csv
+```
